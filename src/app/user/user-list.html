@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-12">
+        <h3>Usuarios</h3>
+    </div>
+    <div class="col-12 d-flex justify-content-end">
+        <button class="btn btn-outline-primary" (click)="openDialog()">Agregar usuario</button>
+    </div>
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of entities">
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>
+                        <button (click)="abrirUsuario(user.id)">Abrir</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

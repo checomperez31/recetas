@@ -1,0 +1,46 @@
+<form #form="ngForm" (ngSubmit)="save()">
+    <div class="modal-header">
+        <h3>Nuevo usuario</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="username">Nombre de usuario</label>
+                    <input type="text" id="username" name="username" class="form-control"
+                    [(ngModel)]="entity.username" required>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" class="form-control"
+                    [(ngModel)]="entity.password" required>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" class="form-control"
+                    [(ngModel)]="entity.name" required>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="lastName">Apellidos</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control"
+                    [(ngModel)]="entity.lastName" required>
+                </div>
+            </div>
+        </div>
+        {{entity | json}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="close()">
+            Cerrar
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+            Guardar
+        </button>
+    </div>
+</form>

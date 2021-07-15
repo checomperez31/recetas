@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-12">
+        <h3>Roles</h3>
+    </div>
+    <div class="col-12 d-flex justify-content-end">
+        <button class="btn btn-outline-primary" (click)="openDialog()">Agregar rol</button>
+    </div>
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descripción</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let role of entities">
+                    <td>{{role.id}}</td>
+                    <td>{{role.descripcion}}</td>
+                    <td>
+                        <button (click)="openDetails(role.id)">Abrir</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
