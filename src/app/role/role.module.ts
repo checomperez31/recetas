@@ -1,7 +1,9 @@
 import { CommonModule } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { RoleList } from "./role-list";
+import { RoleService } from "./role.service";
 
 const roleRoutes: Routes = [
     {
@@ -11,8 +13,8 @@ const roleRoutes: Routes = [
 ];
 
 @NgModule({
-    imports: [ CommonModule, RouterModule.forChild( roleRoutes ) ],
+    imports: [ CommonModule, RouterModule.forChild( roleRoutes ), HttpClientModule ],
     declarations: [ RoleList ],
-    providers: [],
+    providers: [ RoleService ],
 })
 export class RoleModule {}
