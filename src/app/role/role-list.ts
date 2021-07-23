@@ -1,5 +1,6 @@
 import { HttpResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
+import { RoleDialogService } from "./role-dialog-service";
 import { RoleModel } from "./role.model";
 import { RoleService } from "./role.service";
 
@@ -10,16 +11,17 @@ export class RoleList implements OnInit {
     entities: RoleModel[] = [];
 
     constructor(
-        private entityService: RoleService
+        private entityService: RoleService,
+        private entityDialogService: RoleDialogService
     ) {}
 
     ngOnInit(): void {
         this.load();
     }
 
-    openDialog(): void {}
-
-    openDetails(id?: string): void {}
+    openDialog(id?: string): void {
+        if ( id ) this.entityDialogService.openForm2(id);
+    }
 
     load(): void {
         this.entityService.query().subscribe( this.successLoad.bind( this ) );

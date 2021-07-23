@@ -1,0 +1,25 @@
+<form *ngIf="entity" #form="ngForm" (ngSubmit)="save()">
+    <div class="modal-header">
+        <h3>Rol</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="username">Nombre de usuario</label>
+                    <input type="text" id="username" name="username" class="form-control"
+                    [(ngModel)]="entity.role" required>
+                </div>
+            </div>
+        </div>
+        {{entity | json}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="close()">
+            Cerrar
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+            Guardar
+        </button>
+    </div>
+</form>

@@ -45,7 +45,6 @@ export class UserService {
     }
 
     entityFromServer(entity: any): UserModel {
-        console.log( entity );
         const newEntity = Object.assign( new UserModel(), entity );
         if (entity._id) {
             newEntity.id = entity._id;
