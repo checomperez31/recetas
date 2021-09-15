@@ -7,7 +7,7 @@ import { RoleModel } from './role.model';
 @Injectable()
 export class RoleService {
 
-    private baseUrl = 'http://localhost:3000/api/role';
+    baseUrl = 'http://localhost:3000/api/role';
 
     constructor(
         private http: HttpClient
@@ -15,6 +15,11 @@ export class RoleService {
 
     public save( entity: RoleModel ): Observable<HttpResponse<RoleModel>> {
         return this.http.post<RoleModel>(this.baseUrl, entity, {observe: 'response'})
+        .pipe( map( this.fromServer.bind( this ) ) );;
+    }
+
+    public update( entity: RoleModel ): Observable<HttpResponse<RoleModel>> {
+        return this.http.put<RoleModel>(this.baseUrl, entity, {observe: 'response'})
         .pipe( map( this.fromServer.bind( this ) ) );;
     }
 

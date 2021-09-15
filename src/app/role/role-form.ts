@@ -1,9 +1,11 @@
 import { Component } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { MessageService } from "../utils/message.service";
 import { RoleModel } from "./role.model";
 import { RoleService } from "./role.service";
 
 @Component({
+    selector: 'jhi-role-form-dialog',
     templateUrl: './role-form-template.html'
 })
 export class RoleForm {
@@ -12,7 +14,8 @@ export class RoleForm {
 
     constructor(
         public entityService: RoleService,
-        private activeModal: NgbActiveModal
+        private activeModal: NgbActiveModal,
+        private messageService: MessageService
     ) {}
 
     close(): void {
@@ -22,11 +25,16 @@ export class RoleForm {
     save(): void {
         if (this.entity) {
             this.saving = true;
-            // this.entityService.save( this.entity ).subscribe( this.successSave.bind( this ), () => this.saving = false );
+            if ( this.entity.id ) {
+                this.entityService.update( this.entity ).subscribe( this.successSave.bind( this ), () => this.saving = false );
+            } else {
+                this.entityService.save( this.entity ).subscribe( this.successSave.bind( this ), () => this.saving = false );
+            }
         }
     }
 
     successSave(): void {
+        this.messageService.emit('roleListChange');
         this.close();
     }
 }

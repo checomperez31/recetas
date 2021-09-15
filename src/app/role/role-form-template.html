@@ -6,13 +6,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
-                    <label for="username">Nombre de usuario</label>
+                    <label for="username">Rol</label>
                     <input type="text" id="username" name="username" class="form-control"
                     [(ngModel)]="entity.role" required>
                 </div>
             </div>
         </div>
-        {{entity | json}}
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="close()">

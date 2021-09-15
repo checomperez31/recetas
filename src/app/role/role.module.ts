@@ -7,6 +7,7 @@ import { RoleService } from "src/app/role/role.service";
 import { RoleForm } from "src/app/role/role-form";
 import { RoleDialogService } from "src/app/role/role-dialog-service";
 import { RoleList } from "src/app/role/role-list";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 const roleRoutes: Routes = [
     {
@@ -16,8 +17,9 @@ const roleRoutes: Routes = [
 ];
 
 @NgModule({
-    imports: [ CommonModule, RouterModule.forChild( roleRoutes ), HttpClientModule, FormsModule ],
+    imports: [ CommonModule, RouterModule.forChild( roleRoutes ), HttpClientModule, FormsModule, NgbModule ],
     declarations: [ RoleList, RoleForm ],
+    entryComponents: [ RoleForm ],
     providers: [ RoleService, RoleDialogService ],
 })
 export class RoleModule {}
