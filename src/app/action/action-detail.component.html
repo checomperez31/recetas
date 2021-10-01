@@ -1,0 +1,30 @@
+<div>
+    <div class="modal-header">
+        <h3>Acción</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row" *ngIf="entity">
+            <div class="col-12 form-group">
+                <label>ID</label>
+                <dd>{{entity.id}}</dd>
+            </div>
+            <div class="col-12 form-group">
+                <label>Descripción</label>
+                <dd>{{entity.description}}</dd>
+            </div>
+            <div class="col-12 form-group">
+                <label>Fecha</label>
+                <dd>{{entity.insertDate}}</dd>
+            </div>
+            <div class="col-12 form-group">
+                <label>Estatus</label>
+                <dd>{{entity.status === 'A' ? 'Activo' : 'Inactivo'}}</dd>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="close()">
+            Cerrar
+        </button>
+    </div>
+</div>

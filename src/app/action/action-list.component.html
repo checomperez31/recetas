@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-12">
+        <h3>Acciones</h3>
+    </div>
+    <div class="col-12 d-flex justify-content-end">
+        <button class="btn btn-outline-primary" (click)="openDialog()">
+            Agregar acción
+        </button>
+    </div>
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Descripcion</th>
+                    <th>Fecha</th>
+                    <th>Estatus</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let entity of entities">
+                    <td>{{entity.description}}</td>
+                    <td>{{entity.insertDate}}</td>
+                    <td>{{entity.status === 'A' ? 'Activo' : 'Inactivo'}}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button class="btn btn-info" (click)="openDetails(entity.id)">Detalles</button>
+                            <button class="btn btn-primary" (click)="openDialog(entity.id)">Editar</button>
+                            <button class="btn" [ngClass]="entity.status === 'A' ? 'btn-danger' : 'btn-success'"
+                            (click)="deactivateEntity(entity.id)">
+                                {{entity.status === 'A' ? 'Desactivar' : 'Activar'}}
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

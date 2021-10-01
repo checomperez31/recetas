@@ -1,12 +1,12 @@
 import { HttpResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { MessageService } from "../utils/message.service";
-import { RoleDialogService } from "./role-dialog-service";
+import { RoleDialogService } from "./role-dialog.service";
 import { RoleModel } from "./role.model";
 import { RoleService } from "./role.service";
 
 @Component({
-    templateUrl: './role-list.html'
+    templateUrl: './role-list.component.html'
 })
 export class RoleList implements OnInit {
     entities: RoleModel[] = [];
@@ -36,5 +36,13 @@ export class RoleList implements OnInit {
 
     subscribeToChanges(): void {
         this.messageService.subscribe('roleListChange', this.load.bind( this ) );
+    }
+
+    openDetails(id: string) {
+        this.entityDialogService.openDetails( id );
+    }
+
+    delete(id: string): void {
+        this.entityService.delete( id ).subscribe( this.load.bind( this ) );
     }
 }

@@ -1,0 +1,24 @@
+<form #form="ngForm" (ngSubmit)="save()">
+    <div class="modal-header">
+        <h3>Acciones</h3>
+    </div>
+    <div class="modal-body" *ngIf="entity">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <input type="text" id="description" name="description" class="form-control"
+                    [(ngModel)]="entity.description" required>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close()">
+            Cerrar
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="!entity || form.invalid">
+            Guardar
+        </button>
+    </div>
+</form>

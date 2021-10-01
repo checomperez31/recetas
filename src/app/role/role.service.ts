@@ -33,6 +33,10 @@ export class RoleService {
         .pipe( map( this.arrayFromServer.bind( this ) ) );
     }
 
+    public delete(id: string): Observable<HttpResponse<any>> {
+        return this.http.delete<any>(`${this.baseUrl}/${id}`, { observe: 'response' });
+    }
+
     private arrayFromServer(res: HttpResponse<RoleModel[]>): HttpResponse<RoleModel[]> {
         let body: RoleModel[] | null = null;
         if ( res.body ) {

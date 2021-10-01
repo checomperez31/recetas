@@ -9,19 +9,25 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Descripción</th>
                     <th>Fecha de creación</th>
+                    <th>Estatus</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let role of entities">
-                    <td>{{role.id}}</td>
                     <td>{{role.role}}</td>
                     <td>{{role.insertDate | date: 'short'}}</td>
-                    <td>
-                        <button class="btn btn-primary" (click)="openDialog(role.id)">Abrir</button>
+                    <td>{{role.status === 'A' ? 'Activo' : 'Inactivo'}}</td>
+                    <td class="text-right">
+                        <div class="btn-group" *ngIf="role.id">
+                            <button class="btn btn-info" (click)="openDetails(role.id)">Detalles</button>
+                            <button class="btn btn-primary" (click)="openDialog(role.id)">Editar</button>
+                            <button class="btn" [ngClass]="role.status === 'A' ? 'btn-danger' : 'btn-success'" (click)="delete(role.id)">
+                                {{role.status === 'A' ? 'Desactivar' : 'Activar'}}
+                            </button>
+                        </div>
                     </td>
                 </tr>
             </tbody>

@@ -6,7 +6,7 @@ import { RoleService } from "./role.service";
 
 @Component({
     selector: 'jhi-role-form-dialog',
-    templateUrl: './role-form-template.html'
+    templateUrl: './role-form.component.html'
 })
 export class RoleForm {
     entity?: RoleModel;

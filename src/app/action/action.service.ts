@@ -33,19 +33,23 @@ export class ActionService {
         .pipe( map( this.convertArrayFromServer.bind(this) ) );
     }
 
-    convertArrayFromServer(res: HttpResponse<ActionModel[]>): HttpResponse<ActionModel[]> {
+    public delete(id: string): Observable<HttpResponse<any>> {
+        return this.http.delete<any>(`${this.baseUrl}/${id}`, {observe: 'response'});
+    }
+
+    private convertArrayFromServer(res: HttpResponse<ActionModel[]>): HttpResponse<ActionModel[]> {
         let body: ActionModel[] | null = null;
         if (res.body) body = res.body.map( this.cloneEntityFromServer.bind(this) );
         return res.clone( { body } );
     }
 
-    convertEntityFromServer(res: HttpResponse<ActionModel>): HttpResponse<ActionModel> {
+    private convertEntityFromServer(res: HttpResponse<ActionModel>): HttpResponse<ActionModel> {
         let body: ActionModel | null = null;
         if (res.body) body = this.cloneEntityFromServer( res.body );
         return res.clone( { body } );
     }
 
-    cloneEntityFromServer(entity: any): ActionModel {
+    private cloneEntityFromServer(entity: any): ActionModel {
         const copy: ActionModel = Object.assign( new ActionModel(), entity );
         if (entity._id) {
             copy.id = entity._id;
