@@ -1,3 +1,35 @@
-<div>
-    Aqui en teoria debe de haber algo
+<div class="row">
+    <div class="col-12">
+        {{role}}
+        <h3 *ngIf="!role">Acciones</h3>
+        <h3 *ngIf="role">Acciones de {{role.role}}</h3>
+    </div>
+    <div class="col-12 d-flex justify-content-end">
+        <button class="btn btn-outline-primary">
+            Agregar acción
+        </button>
+    </div>
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Descripcion</th>
+                    <th>Fecha</th>
+                    <th>Estatus</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let entity of entities">
+                    <td>{{entity.description}}</td>
+                    <td>{{entity.insertDate}}</td>
+                    <td>{{entity.status === 'A' ? 'Activo' : 'Inactivo'}}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
