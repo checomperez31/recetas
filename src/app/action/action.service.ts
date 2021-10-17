@@ -7,7 +7,7 @@ import { ActionModel } from "./action.model";
 @Injectable()
 export class ActionService {
 
-    baseUrl = 'http://localhost:3000/api/action';
+    baseUrl = 'http://localhost:8081/api/action';
 
     constructor(
         private http: HttpClient
