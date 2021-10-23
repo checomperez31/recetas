@@ -2,12 +2,13 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, observeOn } from 'rxjs/operators';
+import { server_url } from '../app.constants';
 import { UserModel } from './user.model';
 
 @Injectable()
 export class UserService {
 
-    baseUrl = 'http://localhost:3000/api/user';
+    baseUrl = server_url + '/api/user';
 
     constructor(
         private httpClient: HttpClient

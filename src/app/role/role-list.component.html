@@ -17,7 +17,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let role of entities">
-                    <td>{{role.role}}</td>
+                    <td>{{role.description}}</td>
                     <td>{{role.insertDate | date: 'short'}}</td>
                     <td>{{role.status === 'A' ? 'Activo' : 'Inactivo'}}</td>
                     <td class="text-right">

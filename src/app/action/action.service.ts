@@ -3,11 +3,12 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { ActionModel } from "./action.model";
+import { server_url } from '../app.constants';
 
 @Injectable()
 export class ActionService {
 
-    baseUrl = 'http://localhost:8081/api/action';
+    baseUrl = server_url +'/api/action';
 
     constructor(
         private http: HttpClient

@@ -2,12 +2,13 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { server_url } from '../app.constants';
 import { RoleModel } from './role.model';
 
 @Injectable()
 export class RoleService {
 
-    baseUrl = 'http://localhost:3000/api/role';
+    baseUrl = server_url + '/api/role';
 
     constructor(
         private http: HttpClient
