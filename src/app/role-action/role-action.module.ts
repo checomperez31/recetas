@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RoleService } from '../role/role.service';
+import { RoleActionService } from './role-actions.service';
 
 const roleActionRoutes: Routes = [
     {
@@ -18,7 +19,7 @@ const roleActionRoutes: Routes = [
     imports: [ CommonModule, NgbModule, RouterModule.forChild( roleActionRoutes ), FormsModule, HttpClientModule ],
     declarations: [ RoleActionList ],
     entryComponents: [],
-    providers: [ RoleService ],
+    providers: [ RoleService, RoleActionService ],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class RoleActionModule {}

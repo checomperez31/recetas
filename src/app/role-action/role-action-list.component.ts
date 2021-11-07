@@ -5,6 +5,7 @@ import { ActionModel } from '../action/action.model';
 import { RoleService } from '../role/role.service';
 import { HttpResponse } from '@angular/common/http';
 import { RoleModel } from '../role/role.model';
+import { RoleActionService } from './role-actions.service';
 
 @Component({
     selector: 'app-role-action-list',
@@ -18,9 +19,10 @@ export class RoleActionList implements OnDestroy {
 
     constructor(
         private activeRoute: ActivatedRoute,
-        private roleService: RoleService
+        private roleService: RoleService,
+        private roleActionsService: RoleActionService
     ) {
-        this.routeSubscription = activeRoute.params.subscribe(params => {
+        this.routeSubscription = this.activeRoute.params.subscribe(params => {
             if ( params.id ) this.loadEntity( params.id );
         });
     }
@@ -30,11 +32,19 @@ export class RoleActionList implements OnDestroy {
     }
 
     loadEntity(id: string): void {
-        this.roleService.findOne( id ).subscribe( this.succesLoadEntity );
+        this.roleService.findOne( id ).subscribe( this.succesLoadEntity.bind( this ) );
     }
 
     succesLoadEntity(res: HttpResponse<RoleModel>): void {
-        if ( res.body ) this.role = res.body;
-        console.log( this.role );
+        if ( res.body ) {
+            this.role = res.body;
+            this.loadActions();
+        }
+    }
+
+    loadActions() {
+        if ( this.role && this.role.id ) {
+            this.roleActionsService.queryByRole( this.role.id ).subscribe();
+        }
     }
 }
