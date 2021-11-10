@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { server_url } from '../app.constants';
 export class HttpService<X> {
 
-    baseUrl = server_url + '/api/';
+    protected baseUrl = server_url + '/api/';
 
     constructor(
         protected client: HttpClient,
@@ -13,8 +13,13 @@ export class HttpService<X> {
         this.baseUrl = this.baseUrl + url;
     }
 
-    public post(entity: X): Observable<HttpResponse<X>> {
+    public create(entity: X): Observable<HttpResponse<X>> {
         return this.client.post<X>(this.baseUrl, entity, { observe: 'response' })
+        .pipe( map( this.entityFromServer.bind( this ) ) );
+    }
+
+    public update(entity: X): Observable<HttpResponse<X>> {
+        return this.client.put<X>(this.baseUrl, entity, { observe: 'response' })
         .pipe( map( this.entityFromServer.bind( this ) ) );
     }
 

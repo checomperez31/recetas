@@ -27,7 +27,7 @@ export class ActionForm {
         if ( this.entity ) {
             this.saving = true;
             if ( this.entity.id ) {
-                this.entityService.save( this.entity ).subscribe( this.successSave.bind( this ), () => this.saving = false );
+                this.entityService.create( this.entity ).subscribe( this.successSave.bind( this ), () => this.saving = false );
             } else {
                 this.entityService.update( this.entity ).subscribe( this.successSave.bind( this ), () => this.saving = false );
             }

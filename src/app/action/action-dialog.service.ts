@@ -19,7 +19,7 @@ export class ActionDialogService {
         return new Promise<NgbModalRef>((resolve, reject) => {
             if ( !this.modal ) {
                 if ( id ) {
-                    this.entityService.findOne( id ).subscribe(res => {
+                    this.entityService.queryOne( id ).subscribe(res => {
                         this.modal = this.openFormRef( res.body || new ActionModel() );
                         resolve( this.modal );
                     }, err => {
@@ -37,7 +37,7 @@ export class ActionDialogService {
         return new Promise((resolve, reject) => {
             if ( !this.modal ) {
                 if ( id ) {
-                    this.entityService.findOne( id ).subscribe(res => {
+                    this.entityService.queryOne( id ).subscribe(res => {
                         this.modal = this.openDetailRef( res.body || new ActionModel() );
                         resolve( this.modal );
                     }, err => {

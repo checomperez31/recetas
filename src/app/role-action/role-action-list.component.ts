@@ -6,6 +6,7 @@ import { RoleService } from '../role/role.service';
 import { HttpResponse } from '@angular/common/http';
 import { RoleModel } from '../role/role.model';
 import { RoleActionService } from './role-actions.service';
+import { ActionSelectorDialogService } from '../action/selector/action-selector-dialog.service';
 
 @Component({
     selector: 'app-role-action-list',
@@ -20,7 +21,8 @@ export class RoleActionList implements OnDestroy {
     constructor(
         private activeRoute: ActivatedRoute,
         private roleService: RoleService,
-        private roleActionsService: RoleActionService
+        private roleActionsService: RoleActionService,
+        private selectorService: ActionSelectorDialogService
     ) {
         this.routeSubscription = this.activeRoute.params.subscribe(params => {
             if ( params.id ) this.loadEntity( params.id );
@@ -46,5 +48,9 @@ export class RoleActionList implements OnDestroy {
         if ( this.role && this.role.id ) {
             this.roleActionsService.queryByRole( this.role.id ).subscribe();
         }
+    }
+
+    openSelector(): void {
+        this.selectorService.openSelector();
     }
 }
