@@ -10,3 +10,9 @@ export class RoleActionPK {
         public actionId?: string
     ) {}
 }
+
+export class RoleActionModels {
+    constructor(
+        public entities?: RoleActionModel[]
+    ) {}
+}

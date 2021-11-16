@@ -10,6 +10,7 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class ActionSelectorComponent implements OnInit {
     entities: ActionModel[] = [];
+    canSave = false;
     constructor(
         private activeModal: NgbActiveModal,
         private entityService: ActionService
@@ -29,5 +30,13 @@ export class ActionSelectorComponent implements OnInit {
 
     successLoadEntity(res: HttpResponse<ActionModel[]>): void {
         this.entities = res.body || [];
+    }
+
+    valueChange(): void {
+        this.canSave = this.entities.filter(e => e.selected).length > 0;
+    }
+
+    save(): void {
+        this.activeModal.close( this.entities.filter(e => e.selected) );
     }
 }

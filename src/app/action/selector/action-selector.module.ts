@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ActionService } from '../action.service';
 import { ActionSelectorComponent } from './action-selector.component';
 import { ActionSelectorDialogService } from './action-selector-dialog.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-    imports: [ CommonModule ],
+    imports: [ CommonModule, FormsModule ],
     declarations: [ ActionSelectorComponent ],
     entryComponents: [ ActionSelectorComponent ],
     providers: [ ActionService, ActionSelectorDialogService ],

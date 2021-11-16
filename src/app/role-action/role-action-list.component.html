@@ -13,16 +13,12 @@
             <thead>
                 <tr>
                     <th>Descripcion</th>
-                    <th>Fecha</th>
-                    <th>Estatus</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let entity of entities">
-                    <td>{{entity.description}}</td>
-                    <td>{{entity.insertDate}}</td>
-                    <td>{{entity.status === 'A' ? 'Activo' : 'Inactivo'}}</td>
+                    <td>{{entity.id}}</td>
                     <td class="text-right">
                         <div class="btn-group">
                         </div>

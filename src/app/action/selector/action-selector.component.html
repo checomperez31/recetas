@@ -8,11 +8,13 @@
                 <table>
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let entity of entities">
+                            <td class="px-2"><input type="checkbox" [(ngModel)]="entity.selected" (ngModelChange)="valueChange()"></td>
                             <td>{{entity.description}}</td>
                         </tr>
                     </tbody>
@@ -23,6 +25,9 @@
     <div class="modal-footer">
         <button class="btn btn-secondary" (click)="clear()">
             <span>Cancelar</span>
+        </button>
+        <button class="btn btn-primary" (click)="save()" *ngIf="canSave">
+            <span>Guardar</span>
         </button>
     </div>
 </div>

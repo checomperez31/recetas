@@ -7,6 +7,7 @@ import { HttpResponse } from '@angular/common/http';
 import { RoleModel } from '../role/role.model';
 import { RoleActionService } from './role-actions.service';
 import { ActionSelectorDialogService } from '../action/selector/action-selector-dialog.service';
+import { RoleActionModels, RoleActionModel, RoleActionPK } from './role-action.model';
 
 @Component({
     selector: 'app-role-action-list',
@@ -16,7 +17,7 @@ export class RoleActionList implements OnDestroy {
 
     routeSubscription?: Subscription;
     role?: RoleModel;
-    entities: ActionModel[] = [];
+    entities: RoleActionModel[] = [];
 
     constructor(
         private activeRoute: ActivatedRoute,
@@ -44,13 +45,24 @@ export class RoleActionList implements OnDestroy {
         }
     }
 
-    loadActions() {
+    loadActions(): void {
         if ( this.role && this.role.id ) {
-            this.roleActionsService.queryByRole( this.role.id ).subscribe();
+            this.roleActionsService.queryByRole( this.role.id ).subscribe( this.successLoadActions.bind( this ) );
         }
     }
 
+    successLoadActions( res: HttpResponse<RoleActionModel[]> ): void {
+        this.entities = res.body || [];
+    }
+
     openSelector(): void {
-        this.selectorService.openSelector();
+        this.selectorService.openSelector().then(instance => {
+            instance.result.then((array: ActionModel[]) => {
+                if ( array && array.length ) {
+                    const entites = new RoleActionModels( array.map(a => new RoleActionModel( new RoleActionPK( this.role!.id, a.id ) ) ) );
+                    this.roleActionsService.createList( entites ).subscribe( this.loadActions.bind( this ) );
+                }
+            }).catch(() => {});
+        }).catch(() => {});
     }
 }

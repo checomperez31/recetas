@@ -4,5 +4,6 @@ export class ActionModel {
         public description?: string,
         public insertDate?: any,
         public status?: string,
+        public selected = false,
     ) {}
 }
