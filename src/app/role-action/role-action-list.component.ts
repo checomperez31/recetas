@@ -56,13 +56,17 @@ export class RoleActionList implements OnDestroy {
     }
 
     openSelector(): void {
-        this.selectorService.openSelector().then(instance => {
+        this.selectorService.openSelector(this.entities.map(e => e.action!)).then(instance => {
             instance.result.then((array: ActionModel[]) => {
                 if ( array && array.length ) {
-                    const entites = new RoleActionModels( array.map(a => new RoleActionModel( new RoleActionPK( this.role!.id, a.id ) ) ) );
-                    this.roleActionsService.createList( entites ).subscribe( this.loadActions.bind( this ) );
+                    const entites = new RoleActionModels( array.map(a => new RoleActionModel( new RoleActionPK( this.role!.id, a.id ), a ) ) );
+                    this.roleActionsService.createList( entites ).subscribe( () => this.loadActions() );
                 }
             }).catch(() => {});
         }).catch(() => {});
+    }
+
+    delete(id: RoleActionPK): void {
+        if ( id.roleId && id.actionId ) this.roleActionsService.deleteById( id.roleId, id.actionId ).subscribe( this.loadActions.bind( this ) );
     }
 }

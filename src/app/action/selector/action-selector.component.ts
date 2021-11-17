@@ -10,6 +10,7 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class ActionSelectorComponent implements OnInit {
     entities: ActionModel[] = [];
+    entitiesSelected?: ActionModel[];
     canSave = false;
     constructor(
         private activeModal: NgbActiveModal,
@@ -30,6 +31,10 @@ export class ActionSelectorComponent implements OnInit {
 
     successLoadEntity(res: HttpResponse<ActionModel[]>): void {
         this.entities = res.body || [];
+        if ( this.entitiesSelected ) {
+            this.entities = this.entities
+                .filter( a => this.entitiesSelected!.findIndex( es => es.id === a.id) < 0 );
+        }
     }
 
     valueChange(): void {

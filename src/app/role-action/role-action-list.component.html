@@ -18,9 +18,19 @@
             </thead>
             <tbody>
                 <tr *ngFor="let entity of entities">
-                    <td>{{entity.id}}</td>
+                    <td>
+                        <ng-container *ngIf="entity.action; else noAction">
+                            {{entity.action.description}}
+                        </ng-container>
+                        <ng-template #noAction>
+                            Sin acción
+                        </ng-template>
+                    </td>
                     <td class="text-right">
-                        <div class="btn-group">
+                        <div class="btn-group" *ngIf="entity && entity.id">
+                            <button class="btn btn-danger" (click)="delete(entity.id)">
+                                <span>Eliminar</span>
+                            </button>
                         </div>
                     </td>
                 </tr>

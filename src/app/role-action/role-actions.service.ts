@@ -21,4 +21,8 @@ export class RoleActionService extends HttpService<RoleActionModel> {
         return this.client.get< RoleActionModel[] >(`${this.baseUrl}/${roleId}`, {observe: 'response'})
         .pipe( map( this.arrayFromServer.bind(this) ) );
     }
+
+    public deleteById(roleId: string, actionId: string): Observable<HttpResponse<any>> {
+        return this.client.delete<any>(`${this.baseUrl}/${roleId}/${actionId}`, {observe: 'response'});
+    }
 }
