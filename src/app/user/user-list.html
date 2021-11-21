@@ -13,6 +13,7 @@
                     <th>Username</th>
                     <th>Nombre</th>
                     <th>Apellidos</th>
+                    <th>Estatus</th>
                     <th></th>
                 </tr>
             </thead>
@@ -22,10 +23,14 @@
                     <td>{{user.username}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.lastName}}</td>
+                    <td>{{user.status === 'A' ? 'Activo' : 'Inactivo'}}</td>
                     <td>
                         <div class="btn-group" *ngIf="user.id">
                             <button class="btn btn-info" (click)="openDetails(user.id)">Detalles</button>
                             <button class="btn btn-primary" (click)="openDialog(user.id)">Editar</button>
+                            <button class="btn" [ngClass]="user.status === 'A' ? 'btn-danger': 'btn-success'" (click)="delete(user.id)">
+                                {{user.status === 'A' ? 'Desactivar' : 'Activar'}}
+                            </button>
                         </div>
                     </td>
                 </tr>

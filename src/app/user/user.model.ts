@@ -4,6 +4,7 @@ export class UserModel {
         public username?: string,
         public password?: string,
         public name?: string,
-        public lastName?: string
+        public lastName?: string,
+        public status?: string,
     ) {}
 }

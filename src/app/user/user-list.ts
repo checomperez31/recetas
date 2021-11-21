@@ -45,4 +45,8 @@ export class UserList implements OnInit, OnDestroy {
     subscribeToEntityUpdates(): void {
         this.entityChangeSubscription = this.messageService.subscribe('userUpdate', this.loadData.bind( this ));
     }
+
+    delete(id: string): void {
+        this.entityService.delete( id ).subscribe( this.loadData.bind( this ) );
+    }
 }
