@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { MessageService } from "../utils/message.service";
 import { UserModel } from "./user.model";
 import { UserService } from "./user.service";
 
@@ -11,11 +12,13 @@ export class UserForm {
 
     constructor(
         private entityService: UserService,
-        private activeModal: NgbActiveModal
+        private activeModal: NgbActiveModal,
+        private messageService: MessageService
     ) {}
 
     save(): void {
-        this.entityService.post( this.entity ).subscribe(res => {
+        this.entityService.create( this.entity ).subscribe(res => {
+            this.messageService.emit('userUpdate');
             this.activeModal.close();
         }, error => {
             console.error( error );

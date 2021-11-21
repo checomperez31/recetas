@@ -23,7 +23,10 @@
                     <td>{{user.name}}</td>
                     <td>{{user.lastName}}</td>
                     <td>
-                        <button (click)="abrirUsuario(user.id)">Abrir</button>
+                        <div class="btn-group" *ngIf="user.id">
+                            <button class="btn btn-info" (click)="openDetails(user.id)">Detalles</button>
+                            <button class="btn btn-primary" (click)="openDialog(user.id)">Editar</button>
+                        </div>
                     </td>
                 </tr>
             </tbody>
