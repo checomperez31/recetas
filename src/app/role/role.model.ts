@@ -5,5 +5,6 @@ export class RoleModel {
         public insertDate?: any,
         public status?: string,
         public updateDate?: any,
+        public selected = false,
     ) {}
 }

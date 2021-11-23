@@ -28,6 +28,7 @@
                         <div class="btn-group" *ngIf="user.id">
                             <button class="btn btn-info" (click)="openDetails(user.id)">Detalles</button>
                             <button class="btn btn-primary" (click)="openDialog(user.id)">Editar</button>
+                            <button class="btn btn-secondary" [routerLink]="['/', 'user-role', user.id]">Roles</button>
                             <button class="btn" [ngClass]="user.status === 'A' ? 'btn-danger': 'btn-success'" (click)="delete(user.id)">
                                 {{user.status === 'A' ? 'Desactivar' : 'Activar'}}
                             </button>
